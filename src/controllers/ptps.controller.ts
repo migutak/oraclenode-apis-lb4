@@ -12,11 +12,12 @@ import {
   getModelSchemaRef, param,
   patch, post,
   put,
+
   requestBody
 } from '@loopback/rest';
 import {OracleDataSource} from '../datasources';
-import {Tqall} from '../models';
-import {TqallRepository} from '../repositories';
+import {Ptps} from '../models';
+import {PtpsRepository} from '../repositories';
 
 const spec = {
   content: {
@@ -33,18 +34,18 @@ const spec = {
   },
 };
 
-export class TqallController {
+export class PtpsController {
   constructor(
     @inject('datasources.oracle') public dataSource: OracleDataSource,
-    @repository(TqallRepository)
-    public tqallRepository: TqallRepository,
+    @repository(PtpsRepository)
+    public ptpsRepository: PtpsRepository,
   ) {}
 
-  @post('/tqall', {
+  @post('/nodeapi/ptps', {
     responses: {
       '200': {
-        description: 'Tqall model instance',
-        content: {'application/json': {schema: getModelSchemaRef(Tqall)}},
+        description: 'Ptps model instance',
+        content: {'application/json': {schema: getModelSchemaRef(Ptps)}},
       },
     },
   })
@@ -52,41 +53,41 @@ export class TqallController {
     @requestBody({
       content: {
         'application/json': {
-          schema: getModelSchemaRef(Tqall, {
-            title: 'NewTqall',
-
+          schema: getModelSchemaRef(Ptps, {
+            title: 'NewPtps',
+            exclude: ['id'],
           }),
         },
       },
     })
-    tqall: Tqall,
-  ): Promise<Tqall> {
-    return this.tqallRepository.create(tqall);
+    ptps: Omit<Ptps, 'id'>,
+  ): Promise<Ptps> {
+    return this.ptpsRepository.create(ptps);
   }
 
-  @get('/tqall/count', {
+  @get('/nodeapi/ptps/count', {
     responses: {
       '200': {
-        description: 'Tqall model count',
+        description: 'Ptps model count',
         content: {'application/json': {schema: CountSchema}},
       },
     },
   })
   async count(
-    @param.where(Tqall) where?: Where<Tqall>,
+    @param.where(Ptps) where?: Where<Ptps>,
   ): Promise<Count> {
-    return this.tqallRepository.count(where);
+    return this.ptpsRepository.count(where);
   }
 
-  @get('/tqall', {
+  @get('/nodeapi/ptps', {
     responses: {
       '200': {
-        description: 'Array of Tqall model instances',
+        description: 'Array of Ptps model instances',
         content: {
           'application/json': {
             schema: {
               type: 'array',
-              items: getModelSchemaRef(Tqall, {includeRelations: true}),
+              items: getModelSchemaRef(Ptps, {includeRelations: true}),
             },
           },
         },
@@ -94,15 +95,15 @@ export class TqallController {
     },
   })
   async find(
-    @param.filter(Tqall) filter?: Filter<Tqall>,
-  ): Promise<Tqall[]> {
-    return this.tqallRepository.find(filter);
+    @param.filter(Ptps) filter?: Filter<Ptps>,
+  ): Promise<Ptps[]> {
+    return this.ptpsRepository.find(filter);
   }
 
-  @patch('/tqall', {
+  @patch('/nodeapi/ptps', {
     responses: {
       '200': {
-        description: 'Tqall PATCH success count',
+        description: 'Ptps PATCH success count',
         content: {'application/json': {schema: CountSchema}},
       },
     },
@@ -111,89 +112,88 @@ export class TqallController {
     @requestBody({
       content: {
         'application/json': {
-          schema: getModelSchemaRef(Tqall, {partial: true}),
+          schema: getModelSchemaRef(Ptps, {partial: true}),
         },
       },
     })
-    tqall: Tqall,
-    @param.where(Tqall) where?: Where<Tqall>,
+    ptps: Ptps,
+    @param.where(Ptps) where?: Where<Ptps>,
   ): Promise<Count> {
-    return this.tqallRepository.updateAll(tqall, where);
+    return this.ptpsRepository.updateAll(ptps, where);
   }
 
-  // caching response for 60 seconds
-  @get('/tqall/{id}', {
+  @get('/nodeapi/ptps/{id}', {
     responses: {
       '200': {
-        description: 'Tqall model instance',
+        description: 'Ptps model instance',
         content: {
           'application/json': {
-            schema: getModelSchemaRef(Tqall, {includeRelations: true}),
+            schema: getModelSchemaRef(Ptps, {includeRelations: true}),
           },
         },
       },
     },
   })
   async findById(
-    @param.path.string('id') id: string,
-    @param.filter(Tqall, {exclude: 'where'}) filter?: FilterExcludingWhere<Tqall>
-  ): Promise<Tqall> {
-    return this.tqallRepository.findById(id, filter);
+    @param.path.number('id') id: number,
+    @param.filter(Ptps, {exclude: 'where'}) filter?: FilterExcludingWhere<Ptps>
+  ): Promise<Ptps> {
+    return this.ptpsRepository.findById(id, filter);
   }
 
-  @patch('/tqall/{id}', {
+  @patch('/nodeapi/ptps/{id}', {
     responses: {
       '204': {
-        description: 'Tqall PATCH success',
+        description: 'Ptps PATCH success',
       },
     },
   })
   async updateById(
-    @param.path.string('id') id: string,
+    @param.path.number('id') id: number,
     @requestBody({
       content: {
         'application/json': {
-          schema: getModelSchemaRef(Tqall, {partial: true}),
+          schema: getModelSchemaRef(Ptps, {partial: true}),
         },
       },
     })
-    tqall: Tqall,
+    ptps: Ptps,
   ): Promise<void> {
-    await this.tqallRepository.updateById(id, tqall);
+    await this.ptpsRepository.updateById(id, ptps);
   }
 
-  @put('/tqall/{id}', {
+  @put('/nodeapi/ptps/{id}', {
     responses: {
       '204': {
-        description: 'Tqall PUT success',
+        description: 'Ptps PUT success',
       },
     },
   })
   async replaceById(
-    @param.path.string('id') id: string,
-    @requestBody() tqall: Tqall,
+    @param.path.number('id') id: number,
+    @requestBody() ptps: Ptps,
   ): Promise<void> {
-    await this.tqallRepository.replaceById(id, tqall);
+    await this.ptpsRepository.replaceById(id, ptps);
   }
 
-  @del('/tqall/{id}', {
+  @del('/nodeapi/ptps/{id}', {
     responses: {
       '204': {
-        description: 'Tqall DELETE success',
+        description: 'Ptps DELETE success',
       },
     },
   })
-  async deleteById(@param.path.string('id') id: string): Promise<void> {
-    await this.tqallRepository.deleteById(id);
+  async deleteById(@param.path.number('id') id: number): Promise<void> {
+    await this.ptpsRepository.deleteById(id);
   }
 
-  //
-  @post('/nodeapi/tqall/gridviewall', {
+  //gridbrokenptps
+  @post('/nodeapi/ptps/gridbrokenptps', {
     responses: {
       '200': spec,
     },
   })
-  async gridviewall
+  async gridbrokenptps
     (@requestBody(spec) body: object): Promise<any> {
     const result = await this.dataSource.execute(this.buildSql(body))
     const rowCount = this.getRowCount(body, result);
@@ -206,7 +206,7 @@ export class TqallController {
 
   buildSql(request: any) {
     const selectSql = this.createSelectSql(request);
-    const fromSql = ' from ecol.tqall ';
+    const fromSql = ' from ptps p join tqall t on p.accnumber=t.accnumber where p.met !=\'met\' ';
     const whereSql = this.createWhereSql(request);
     const limitSql = this.createLimitSql(request);
 
@@ -317,6 +317,8 @@ export class TqallController {
       const keySet = Object.keys(filterModel);
       keySet.forEach(function (key) {
         const item = filterModel[key];
+        //console.log(item);
+        //console.log('key__',key);
         whereParts.push(that.createFilterSql(key, item));
       });
     }

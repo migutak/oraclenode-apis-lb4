@@ -23,3 +23,7 @@ export * from './tbl-allocations-region.controller';
 export * from './tbl-deptcodes.controller';
 export * from './tbl-allocations-deptcodes.controller';
 export * from './tblarocodes.controller';
+export * from './tblusers.controller';
+export * from './permissionsettings.controller';
+export * from './ptps.controller';
+export * from './watchstage.controller';

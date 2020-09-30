@@ -10,13 +10,20 @@ import {
 import {
   del, get,
   getModelSchemaRef, param,
+
+
   patch, post,
+
+
+
+
   put,
+
   requestBody
 } from '@loopback/rest';
 import {OracleDataSource} from '../datasources';
-import {Tqall} from '../models';
-import {TqallRepository} from '../repositories';
+import {WatchStage} from '../models';
+import {WatchStageRepository} from '../repositories';
 
 const spec = {
   content: {
@@ -33,18 +40,18 @@ const spec = {
   },
 };
 
-export class TqallController {
+export class WatchstageController {
   constructor(
     @inject('datasources.oracle') public dataSource: OracleDataSource,
-    @repository(TqallRepository)
-    public tqallRepository: TqallRepository,
+    @repository(WatchStageRepository)
+    public watchStageRepository: WatchStageRepository,
   ) {}
 
-  @post('/tqall', {
+  @post('/nodeapi-watchstage', {
     responses: {
       '200': {
-        description: 'Tqall model instance',
-        content: {'application/json': {schema: getModelSchemaRef(Tqall)}},
+        description: 'WatchStage model instance',
+        content: {'application/json': {schema: getModelSchemaRef(WatchStage)}},
       },
     },
   })
@@ -52,41 +59,41 @@ export class TqallController {
     @requestBody({
       content: {
         'application/json': {
-          schema: getModelSchemaRef(Tqall, {
-            title: 'NewTqall',
+          schema: getModelSchemaRef(WatchStage, {
+            title: 'NewWatchStage',
 
           }),
         },
       },
     })
-    tqall: Tqall,
-  ): Promise<Tqall> {
-    return this.tqallRepository.create(tqall);
+    watchStage: WatchStage,
+  ): Promise<WatchStage> {
+    return this.watchStageRepository.create(watchStage);
   }
 
-  @get('/tqall/count', {
+  @get('/nodeapi-watchstage/count', {
     responses: {
       '200': {
-        description: 'Tqall model count',
+        description: 'WatchStage model count',
         content: {'application/json': {schema: CountSchema}},
       },
     },
   })
   async count(
-    @param.where(Tqall) where?: Where<Tqall>,
+    @param.where(WatchStage) where?: Where<WatchStage>,
   ): Promise<Count> {
-    return this.tqallRepository.count(where);
+    return this.watchStageRepository.count(where);
   }
 
-  @get('/tqall', {
+  @get('/nodeapi-watchstage', {
     responses: {
       '200': {
-        description: 'Array of Tqall model instances',
+        description: 'Array of WatchStage model instances',
         content: {
           'application/json': {
             schema: {
               type: 'array',
-              items: getModelSchemaRef(Tqall, {includeRelations: true}),
+              items: getModelSchemaRef(WatchStage, {includeRelations: true}),
             },
           },
         },
@@ -94,15 +101,15 @@ export class TqallController {
     },
   })
   async find(
-    @param.filter(Tqall) filter?: Filter<Tqall>,
-  ): Promise<Tqall[]> {
-    return this.tqallRepository.find(filter);
+    @param.filter(WatchStage) filter?: Filter<WatchStage>,
+  ): Promise<WatchStage[]> {
+    return this.watchStageRepository.find(filter);
   }
 
-  @patch('/tqall', {
+  @patch('/nodeapi-watchstage', {
     responses: {
       '200': {
-        description: 'Tqall PATCH success count',
+        description: 'WatchStage PATCH success count',
         content: {'application/json': {schema: CountSchema}},
       },
     },
@@ -111,24 +118,23 @@ export class TqallController {
     @requestBody({
       content: {
         'application/json': {
-          schema: getModelSchemaRef(Tqall, {partial: true}),
+          schema: getModelSchemaRef(WatchStage, {partial: true}),
         },
       },
     })
-    tqall: Tqall,
-    @param.where(Tqall) where?: Where<Tqall>,
+    watchStage: WatchStage,
+    @param.where(WatchStage) where?: Where<WatchStage>,
   ): Promise<Count> {
-    return this.tqallRepository.updateAll(tqall, where);
+    return this.watchStageRepository.updateAll(watchStage, where);
   }
 
-  // caching response for 60 seconds
-  @get('/tqall/{id}', {
+  @get('/nodeapi-watchstage/{id}', {
     responses: {
       '200': {
-        description: 'Tqall model instance',
+        description: 'WatchStage model instance',
         content: {
           'application/json': {
-            schema: getModelSchemaRef(Tqall, {includeRelations: true}),
+            schema: getModelSchemaRef(WatchStage, {includeRelations: true}),
           },
         },
       },
@@ -136,15 +142,15 @@ export class TqallController {
   })
   async findById(
     @param.path.string('id') id: string,
-    @param.filter(Tqall, {exclude: 'where'}) filter?: FilterExcludingWhere<Tqall>
-  ): Promise<Tqall> {
-    return this.tqallRepository.findById(id, filter);
+    @param.filter(WatchStage, {exclude: 'where'}) filter?: FilterExcludingWhere<WatchStage>
+  ): Promise<WatchStage> {
+    return this.watchStageRepository.findById(id, filter);
   }
 
-  @patch('/tqall/{id}', {
+  @patch('/nodeapi-watchstage/{id}', {
     responses: {
       '204': {
-        description: 'Tqall PATCH success',
+        description: 'WatchStage PATCH success',
       },
     },
   })
@@ -153,47 +159,47 @@ export class TqallController {
     @requestBody({
       content: {
         'application/json': {
-          schema: getModelSchemaRef(Tqall, {partial: true}),
+          schema: getModelSchemaRef(WatchStage, {partial: true}),
         },
       },
     })
-    tqall: Tqall,
+    watchStage: WatchStage,
   ): Promise<void> {
-    await this.tqallRepository.updateById(id, tqall);
+    await this.watchStageRepository.updateById(id, watchStage);
   }
 
-  @put('/tqall/{id}', {
+  @put('/nodeapi-watchstage/{id}', {
     responses: {
       '204': {
-        description: 'Tqall PUT success',
+        description: 'WatchStage PUT success',
       },
     },
   })
   async replaceById(
     @param.path.string('id') id: string,
-    @requestBody() tqall: Tqall,
+    @requestBody() watchStage: WatchStage,
   ): Promise<void> {
-    await this.tqallRepository.replaceById(id, tqall);
+    await this.watchStageRepository.replaceById(id, watchStage);
   }
 
-  @del('/tqall/{id}', {
+  @del('/nodeapi-watchstage/{id}', {
     responses: {
       '204': {
-        description: 'Tqall DELETE success',
+        description: 'WatchStage DELETE success',
       },
     },
   })
   async deleteById(@param.path.string('id') id: string): Promise<void> {
-    await this.tqallRepository.deleteById(id);
+    await this.watchStageRepository.deleteById(id);
   }
 
-  //
-  @post('/nodeapi/tqall/gridviewall', {
+  //watch_stage/gridviewall_loans
+  @post('/nodeapi/watchstage/gridviewall_loans', {
     responses: {
       '200': spec,
     },
   })
-  async gridviewall
+  async gridviewall_loans
     (@requestBody(spec) body: object): Promise<any> {
     const result = await this.dataSource.execute(this.buildSql(body))
     const rowCount = this.getRowCount(body, result);
@@ -206,7 +212,7 @@ export class TqallController {
 
   buildSql(request: any) {
     const selectSql = this.createSelectSql(request);
-    const fromSql = ' from ecol.tqall ';
+    const fromSql = ' from watch_stage ';
     const whereSql = this.createWhereSql(request);
     const limitSql = this.createLimitSql(request);
 
@@ -221,7 +227,7 @@ export class TqallController {
   }
 
   createSelectSql(request: any) {
-    //console.log(request)
+    console.log(request)
     const rowGroupCols = request.rowGroupCols;
     const valueCols = request.valueCols;
     const groupKeys = request.groupKeys;
@@ -317,6 +323,8 @@ export class TqallController {
       const keySet = Object.keys(filterModel);
       keySet.forEach(function (key) {
         const item = filterModel[key];
+        console.log(item);
+        console.log('key__', key);
         whereParts.push(that.createFilterSql(key, item));
       });
     }
