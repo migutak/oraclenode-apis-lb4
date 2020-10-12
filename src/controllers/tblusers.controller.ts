@@ -9,15 +9,7 @@ import {
 } from '@loopback/repository';
 import {
   del, get,
-  getModelSchemaRef, param,
-
-
-  patch, post,
-
-
-
-
-  put,
+  getModelSchemaRef, param, patch, post, put,
 
   requestBody
 } from '@loopback/rest';
@@ -211,5 +203,20 @@ export class TblusersController {
       message: "success",
       data: data
     };
+  }
+
+  //search
+  @get('/nodeapi/tblusers/search', {
+    responses: {
+      '200': spec,
+    },
+  })
+  async search(
+    @param.query.string('username') username: string,
+  ): Promise<any> {
+    var sql = "select * from tblusers where lower(username) = '" + username.toLowerCase() + "' ";
+
+    const data = await this.dataSource.execute(sql)
+    return data;
   }
 }

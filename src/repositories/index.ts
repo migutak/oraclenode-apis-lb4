@@ -10,3 +10,6 @@ export * from './tblusers.repository';
 export * from './permissionsettings.repository';
 export * from './ptps.repository';
 export * from './watch-stage.repository';
+export * from './notehis.repository';
+export * from './vallnotes.repository';
+export * from './activitylogs.repository';

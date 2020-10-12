@@ -10,3 +10,6 @@ export * from './tblusers.model';
 export * from './permissionsettings.model';
 export * from './ptps.model';
 export * from './watch-stage.model';
+export * from './notehis.model';
+export * from './vallnotes.model';
+export * from './activitylogs.model';

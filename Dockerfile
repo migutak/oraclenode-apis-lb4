@@ -49,3 +49,5 @@ ENV HOST=0.0.0.0 PORT=6001
 
 EXPOSE ${PORT}
 CMD [ "npm", "start" ]
+
+# docker build

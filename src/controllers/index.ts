@@ -27,3 +27,6 @@ export * from './tblusers.controller';
 export * from './permissionsettings.controller';
 export * from './ptps.controller';
 export * from './watchstage.controller';
+export * from './notehis.controller';
+export * from './vallnotes.controller';
+export * from './activitylogs.controller';
