@@ -153,19 +153,19 @@ export class Activitylogs extends Entity {
   product?: string;
 
   @property({
-    type: 'any',
+    type: 'string',
   })
-  restructure?: any;
+  restructure?: string;
 
   @property({
-    type: 'any',
+    type: 'number',
   })
-  restructureamount?: any;
+  restructureamount?: number;
 
   @property({
-    type: 'any',
+    type: 'string',
   })
-  restructuredate?: any;
+  restructuredate?: string;
 
   @property({
     type: 'string',

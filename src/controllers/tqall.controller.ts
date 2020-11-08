@@ -40,7 +40,7 @@ export class TqallController {
     public tqallRepository: TqallRepository,
   ) {}
 
-  @post('/tqall', {
+  @post('/nodeapi/tqall', {
     responses: {
       '200': {
         description: 'Tqall model instance',
@@ -64,7 +64,7 @@ export class TqallController {
     return this.tqallRepository.create(tqall);
   }
 
-  @get('/tqall/count', {
+  @get('/nodeapi/tqall/count', {
     responses: {
       '200': {
         description: 'Tqall model count',
@@ -78,7 +78,7 @@ export class TqallController {
     return this.tqallRepository.count(where);
   }
 
-  @get('/tqall', {
+  @get('/nodeapi/tqall', {
     responses: {
       '200': {
         description: 'Array of Tqall model instances',
@@ -99,7 +99,7 @@ export class TqallController {
     return this.tqallRepository.find(filter);
   }
 
-  @patch('/tqall', {
+  @patch('/nodeapi/tqall', {
     responses: {
       '200': {
         description: 'Tqall PATCH success count',
@@ -122,7 +122,7 @@ export class TqallController {
   }
 
   // caching response for 60 seconds
-  @get('/tqall/{id}', {
+  @get('/nodeapi/tqall/{id}', {
     responses: {
       '200': {
         description: 'Tqall model instance',
@@ -141,7 +141,7 @@ export class TqallController {
     return this.tqallRepository.findById(id, filter);
   }
 
-  @patch('/tqall/{id}', {
+  @patch('/nodeapi/tqall/{id}', {
     responses: {
       '204': {
         description: 'Tqall PATCH success',
@@ -162,7 +162,7 @@ export class TqallController {
     await this.tqallRepository.updateById(id, tqall);
   }
 
-  @put('/tqall/{id}', {
+  @put('/nodeapi/tqall/{id}', {
     responses: {
       '204': {
         description: 'Tqall PUT success',
@@ -176,7 +176,7 @@ export class TqallController {
     await this.tqallRepository.replaceById(id, tqall);
   }
 
-  @del('/tqall/{id}', {
+  @del('/nodeapi/tqall/{id}', {
     responses: {
       '204': {
         description: 'Tqall DELETE success',

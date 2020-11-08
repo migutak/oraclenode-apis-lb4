@@ -11,7 +11,6 @@ import path from 'path';
 import {OracleDataSource} from './datasources';
 import {MySequence} from './sequence';
 
-
 export {ApplicationConfig};
 
 export class OraclenodeApisLb4Application extends BootMixin(

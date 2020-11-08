@@ -47,6 +47,7 @@
     "@loopback/boot": "^2.3.1",
     "@loopback/context": "^3.8.1",
     "@loopback/core": "^2.7.0",
+    "@loopback/health": "^0.5.2",
     "@loopback/openapi-v3": "^3.4.1",
     "@loopback/repository": "^2.5.1",
     "@loopback/rest": "^5.0.1",

@@ -219,7 +219,7 @@ export class NotehisController {
     @param.query.string('offset') offset: number,
     @param.query.string('next') next: number,
   ): Promise<any> {
-    var sql = "Select id,owner,custnumber,accnumber,to_char(notedate) notedate, notesrc,noteimp, notemade, reason from vallnotes where custnumber = '" + custnumber + "' offset " + offset + " rows fetch next " + next + " rows only";
+    var sql = "Select id,owner,custnumber,accnumber,to_char(notedate) notedate, notesrc,noteimp, notemade, reason, reasondetails from vallnotes where custnumber = '" + custnumber + "' offset " + offset + " rows fetch next " + next + " rows only";
     const data = await this.dataSource.execute(sql)
     return data
   }

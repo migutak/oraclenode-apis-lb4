@@ -49,6 +49,11 @@ export class Notehis extends Entity {
   })
   reason?: string;
 
+  @property({
+    type: 'string',
+  })
+  reasondetails?: string;
+
 
   constructor(data?: Partial<Notehis>) {
     super(data);
