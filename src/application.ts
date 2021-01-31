@@ -21,7 +21,7 @@ export class OraclenodeApisLb4Application extends BootMixin(
 
     // Set datasource based off environment
     const db_host = process.env.DB_HOST || '127.0.0.1';
-    const db_port = process.env.DB_PORT || 1521;
+    const db_port = process.env.DB_PORT || 1564;
     const db_user = process.env.DB_USERNAME || 'ecol';
     const db_pass = process.env.DB_PASSWORD || 'ecol';
     const database = process.env.DB_DATABASE || 'ORCLCDB.localdomain';

@@ -128,6 +128,12 @@ export class Tblusers extends Entity {
   })
   team: string;
 
+  @property({
+    type: 'string',
+    required: false,
+  })
+  remedialunit: string;
+
 
   constructor(data?: Partial<Tblusers>) {
     super(data);

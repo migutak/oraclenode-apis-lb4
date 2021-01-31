@@ -145,7 +145,7 @@ export class Activitylogs extends Entity {
   @property({
     type: 'date',
   })
-  actiondate?: string;
+  actiondate?: Date;
 
   @property({
     type: 'string',
@@ -173,14 +173,14 @@ export class Activitylogs extends Entity {
   abilitytopay?: string;
 
   @property({
-    type: 'any',
+    type: 'string',
   })
-  toemail?: any;
+  toemail?: string;
 
   @property({
-    type: 'any',
+    type: 'string',
   })
-  toemailaddress?: any;
+  toemailaddress?: string;
 
 
   constructor(data?: Partial<Activitylogs>) {
