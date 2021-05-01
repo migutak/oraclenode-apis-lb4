@@ -60,6 +60,26 @@ export class Tqall extends Entity {
   })
   instamount?: number;
 
+  @property({
+    type: 'string',
+  })
+  aroname?: string;
+
+  @property({
+    type: 'string',
+  })
+  branchcode?: string;
+
+  @property({
+    type: 'string',
+  })
+  branchname?: string;
+
+  @property({
+    type: 'string',
+  })
+  region?: string;
+
   // Define well-known properties here
 
   // Indexer property to allow additional data

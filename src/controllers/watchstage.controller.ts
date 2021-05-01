@@ -45,7 +45,7 @@ export class WatchstageController {
     @inject('datasources.oracle') public dataSource: OracleDataSource,
     @repository(WatchStageRepository)
     public watchStageRepository: WatchStageRepository,
-  ) {}
+  ) { }
 
   @post('/nodeapi-watchstage', {
     responses: {
@@ -221,13 +221,10 @@ export class WatchstageController {
 
     const SQL = selectSql + fromSql + whereSql + groupBySql + orderBySql + limitSql;
 
-    console.log(SQL);
-
     return SQL;
   }
 
   createSelectSql(request: any) {
-    console.log(request)
     const rowGroupCols = request.rowGroupCols;
     const valueCols = request.valueCols;
     const groupKeys = request.groupKeys;
@@ -255,7 +252,7 @@ export class WatchstageController {
       case 'number':
         return this.createNumberFilterSql(key, item);
       default:
-        console.log('unkonwn filter type: ' + item.filterType);
+      // console.log('unkonwn filter type: ' + item.filterType);
     }
   }
 
@@ -276,7 +273,7 @@ export class WatchstageController {
       case 'inRange':
         return '(' + key + ' >= ' + item.filter + ' and ' + key + ' <= ' + item.filterTo + ')';
       default:
-        console.log('unknown number filter type: ' + item.type);
+        //console.log('unknown number filter type: ' + item.type);
         return 'true';
     }
   }
@@ -296,7 +293,7 @@ export class WatchstageController {
       case 'endsWith':
         return 'upper(' + key + ') like \'%' + (item.filter).toUpperCase() + '\'';
       default:
-        console.log('unknown text filter type: ' + item.type);
+        //console.log('unknown text filter type: ' + item.type);
         return 'true';
     }
   }
@@ -323,8 +320,8 @@ export class WatchstageController {
       const keySet = Object.keys(filterModel);
       keySet.forEach(function (key) {
         const item = filterModel[key];
-        console.log(item);
-        console.log('key__', key);
+        //console.log(item);
+        //console.log('key__', key);
         whereParts.push(that.createFilterSql(key, item));
       });
     }

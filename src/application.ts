@@ -1,5 +1,6 @@
 import {BootMixin} from '@loopback/boot';
 import {ApplicationConfig} from '@loopback/core';
+// import {MetricsComponent} from '@loopback/metrics';
 import {RepositoryMixin} from '@loopback/repository';
 import {RestApplication} from '@loopback/rest';
 import {
@@ -18,10 +19,10 @@ export class OraclenodeApisLb4Application extends BootMixin(
 ) {
   constructor(options: ApplicationConfig = {}) {
     super(options);
-
+    // this.component(MetricsComponent);
     // Set datasource based off environment
-    const db_host = process.env.DB_HOST || '127.0.0.1';
-    const db_port = process.env.DB_PORT || 1564;
+    const db_host = process.env.DB_HOST || '52.117.54.217';
+    const db_port = process.env.DB_PORT || 1521;
     const db_user = process.env.DB_USERNAME || 'ecol';
     const db_pass = process.env.DB_PASSWORD || 'ecol';
     const database = process.env.DB_DATABASE || 'ORCLCDB.localdomain';
