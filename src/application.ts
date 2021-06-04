@@ -23,8 +23,8 @@ export class OraclenodeApisLb4Application extends BootMixin(
     super(options);
     // this.component(MetricsComponent);
     // Set datasource based off environment
-    const db_host = process.env.DB_HOST ?? '52.117.54.217';
-    const db_port = process.env.DB_PORT ?? 1521;
+    const db_host = process.env.DB_HOST ?? '127.0.0.1';
+    const db_port = process.env.DB_PORT ?? 1564;
     const db_user = process.env.DB_USERNAME ?? 'ecol';
     const db_pass = process.env.DB_PASSWORD ?? 'ecol';
     const database = process.env.DB_DATABASE ?? 'ORCLCDB.localdomain';
@@ -39,9 +39,9 @@ export class OraclenodeApisLb4Application extends BootMixin(
       password: db_pass,
       database: database,
       useNewUrlParser: true,
+      maxOfflineRequests: 20
     });
     this.bind('datasources.oracle').toClass(OracleDataSource);
-
     // Set up the custom sequence
     this.sequence(MySequence);
 

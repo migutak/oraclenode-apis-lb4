@@ -153,9 +153,9 @@ export class Activitylogs extends Entity {
   product?: string;
 
   @property({
-    type: 'string',
+    type: 'Boolean',
   })
-  restructure?: string;
+  restructure?: Boolean;
 
   @property({
     type: 'number',

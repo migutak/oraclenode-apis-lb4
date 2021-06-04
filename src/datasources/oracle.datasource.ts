@@ -5,11 +5,12 @@ const config = {
   name: 'oracle',
   connector: 'oracle',
   tns: '',
-  host: '52.117.93.88',
-  port: 1521,
+  host: '127.0.0.1',
+  port: 1564,
   user: 'ecol',
   password: 'ecol',
-  database: 'ORCLCDB.localdomain'
+  database: 'ORCLCDB.localdomain',
+  maxOfflineRequests: 20
 };
 
 // Observe application's life cycle to disconnect the datasource when

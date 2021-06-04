@@ -33,5 +33,5 @@ ENV HOST=0.0.0.0 PORT=6001
 EXPOSE ${PORT}
 CMD [ "npm", "start" ]
 # docker build -t 172.16.204.72:5100/oraclenode-apis-lb4:4.3
-# docker build -t docker.io/migutak/oraclenode-apis-lb4:4.3
+# docker build -t docker.io/migutak/oraclenode-apis-lb4:4.4 .
 

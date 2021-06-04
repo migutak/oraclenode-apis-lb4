@@ -38,7 +38,7 @@ export class TqallController {
     @inject('datasources.oracle') public dataSource: OracleDataSource,
     @repository(TqallRepository)
     public tqallRepository: TqallRepository,
-  ) {}
+  ) { }
 
   @post('/nodeapi/tqall', {
     responses: {
@@ -215,7 +215,7 @@ export class TqallController {
 
     const SQL = selectSql + fromSql + whereSql + groupBySql + orderBySql + limitSql;
 
-    console.log(SQL);
+    // console.log(SQL);
 
     return SQL;
   }

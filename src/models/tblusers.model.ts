@@ -18,13 +18,13 @@ export class Tblusers extends Entity {
 
   @property({
     type: 'string',
-    required: true,
+    required: false,
   })
   surname: string;
 
   @property({
     type: 'string',
-    required: true,
+    required: false,
   })
   lastname: string;
 
